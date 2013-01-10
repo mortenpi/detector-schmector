@@ -1,0 +1,11 @@
+SubDir TOP ;
+
+C++ = g++ ;
+LINK = $(C++) ;
+
+HDRS += src ;
+library_dir = $(TOP)/lib ;
+binary_dir = $(TOP)/bin ;
+
+SubInclude TOP src ;
+SubInclude TOP test ;

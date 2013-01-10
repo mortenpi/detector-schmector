@@ -1,0 +1,6 @@
+SubDir TOP test ;
+
+LOCATE_TARGET = $(binary_dir) ;
+
+Main randomc : randomc.cpp ;
+LinkLibraries randomc : librandomc ;

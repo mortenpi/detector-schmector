@@ -1,0 +1,3 @@
+SubDir TOP src ;
+ALL_LOCATE_TARGET = $(library_dir) ;
+SubInclude TOP src randomc ;

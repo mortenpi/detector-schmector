@@ -1,0 +1,6 @@
+SubDir TOP src randomc ;
+
+Library librandomc : mersenne.cpp mother.cpp ;
+
+Library libsfmt : sfmt.cpp ;
+ObjectC++Flags sfmt.cpp : -msse2 ;
