@@ -1,7 +1,10 @@
 Particle detector simulation
 ============================
-A particle detector simulation software that
-uses Monte Carlo methods.
+A particle detector simulation software that uses Monte Carlo methods.
+
+Compiling
+=========
+Project uses the jam build tool. Run `jam` to build everything.
 
 License
 =======
