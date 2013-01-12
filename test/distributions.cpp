@@ -18,7 +18,10 @@ int main(int argc, char* argv[]) {
 		Distribution * pdist = pdists[i];
 		for(int n=0; n < 11; n++) {
 			double x = 0.5*(n-5);
-			printf("pdf(%5.2f) = %f\n", x, pdist->pdf(x));
+			double pdf = pdist->pdf(x);
+			double cdf = pdist->cdf(x);
+			double icdf = pdist->invcdf(cdf);
+			printf("%6.3f %6.3f %6.3f %6.3f\n", x, pdf, cdf, icdf);
 		}
 	}
 

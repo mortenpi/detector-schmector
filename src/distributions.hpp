@@ -2,8 +2,8 @@ class Distribution {
 	public:
 	Distribution() {}
 	virtual double pdf(double x) = 0;
-	//virtual double cdf(double x);
-	//virtual double invcdf(double x);
+	virtual double cdf(double x) = 0;
+	virtual double invcdf(double p) = 0;
 };
 
 class NormalDistribution: public Distribution {
@@ -12,6 +12,8 @@ class NormalDistribution: public Distribution {
 	public:
 	NormalDistribution(double mean, double stdev);
 	double pdf(double x);
+	double cdf(double x);
+	double invcdf(double p);
 };
 
 class ExponentialDistribution: public Distribution {
@@ -20,5 +22,6 @@ class ExponentialDistribution: public Distribution {
 	public:
 	ExponentialDistribution(double lambda);
 	double pdf(double x);
-	double invcdf(double Fx);
+	double cdf(double x);
+	double invcdf(double p);
 };
