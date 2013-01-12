@@ -4,3 +4,6 @@ LOCATE_TARGET = $(binary_dir) ;
 
 Main randomc : randomc.cpp ;
 LinkLibraries randomc : librandomc ;
+
+Main gsl : gsl.cpp ;
+LINKLIBS on gsl$(SUFEXE) = -lgsl -lgslcblas ;

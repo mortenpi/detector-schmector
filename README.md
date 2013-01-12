@@ -6,6 +6,11 @@ Compiling
 =========
 Project uses the jam build tool. Run `jam` to build everything.
 
+Dependencies
+------------
+Project uses the GNU GSL library. It should be linked with
+`-lgsl -lgslcblas` flags. Related example: `test/gls.cpp`.
+
 License
 =======
 Copyright (C) 2013 Morten Piibeleht
