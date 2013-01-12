@@ -11,5 +11,7 @@ binary_dir = $(TOP)/bin ;
 
 ALL_LOCATE_TARGET = $(build_dir) ;
 
+LINKLIBS += -lgsl -lgslcblas ;
+
 SubInclude TOP src ;
 SubInclude TOP test ;
