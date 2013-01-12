@@ -1,2 +1,5 @@
 SubDir TOP src ;
+
+Library libdists : distributions.cpp ;
+
 SubInclude TOP src randomc ;

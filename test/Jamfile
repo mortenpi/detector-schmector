@@ -1,9 +1,15 @@
 SubDir TOP test ;
 
+LOCATE_TARGET = $(build_dir)/test ;
+
 Main randomc : randomc.cpp ;
 LinkLibraries randomc : librandomc ;
+
+Main distributions : distributions.cpp ;
+LinkLibraries distributions : libdists ;
 
 Main gsl : gsl.cpp ;
 LINKLIBS on gsl$(SUFEXE) = -lgsl -lgslcblas ;
 
 InstallBin $(binary_dir)/test : randomc gsl ;
+InstallBin $(binary_dir)/test : distributions ;
