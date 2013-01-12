@@ -11,5 +11,8 @@ LinkLibraries distributions : libdists ;
 Main gsl : gsl.cpp ;
 LINKLIBS on gsl$(SUFEXE) = -lgsl -lgslcblas ;
 
-InstallBin $(binary_dir)/test : randomc gsl ;
-InstallBin $(binary_dir)/test : distributions ;
+Main simulatortest : simulatortest.cpp ;
+LinkLibraries simulatortest : libsimulator ;
+
+InstallBin $(binary_dir)/test : randomc gsl distributions ;
+InstallBin $(binary_dir) : simulatortest ;
