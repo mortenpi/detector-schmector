@@ -1,6 +1,7 @@
 #include "structures.hpp"
 
 class Detector {
+	protected:
 	detectorparams params;
 	
 	public:

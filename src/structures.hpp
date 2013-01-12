@@ -19,6 +19,9 @@ struct detectorparams {
 
 struct point {
 	double x,y;
+	point(double x, double y) {
+		this->x = x; this->y = y;
+	}
 };
 
 struct detectordata {
