@@ -4,11 +4,11 @@
 #include <vector>
 
 struct particle {
-	double mass, charge, energy, angle;
+	double mass, charge, energy, phi;
 };
 
 struct particleguess {
-	double mass, charge, energy, angle;
+	double mass, charge, energy, phi;
 };
 
 struct detectorparams {
