@@ -8,11 +8,14 @@ LinkLibraries randomc : librandomc ;
 Main distributions : distributions.cpp ;
 LinkLibraries distributions : libdists ;
 
+Main distgens : distgens.cpp ;
+LinkLibraries distgens : libdists librandomc ;
+
 Main gsl : gsl.cpp ;
 LINKLIBS on gsl$(SUFEXE) = -lgsl -lgslcblas ;
 
 Main simulatortest : simulatortest.cpp ;
 LinkLibraries simulatortest : libsimulator ;
 
-InstallBin $(binary_dir)/test : randomc gsl distributions ;
+InstallBin $(binary_dir)/test : randomc gsl distributions distgens ;
 InstallBin $(binary_dir) : simulatortest ;

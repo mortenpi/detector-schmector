@@ -1,6 +1,7 @@
 SubDir TOP src ;
 
 Library libsimulator : particlegens.cpp ;
-Library libdists : distributions.cpp ;
+
+Library libdists : distributions.cpp distgen.cpp ;
 
 SubInclude TOP src randomc ;
