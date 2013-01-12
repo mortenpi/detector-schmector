@@ -4,8 +4,10 @@ C++ = g++ ;
 LINK = $(C++) ;
 
 HDRS += src ;
-library_dir = $(TOP)/lib ;
+build_dir = $(TOP)/build ;
 binary_dir = $(TOP)/bin ;
+
+ALL_LOCATE_TARGET = $(build_dir) ;
 
 SubInclude TOP src ;
 SubInclude TOP test ;
