@@ -2,6 +2,8 @@ SubDir TOP ;
 
 C++ = g++ ;
 LINK = $(C++) ;
+C++FLAGS += -g ;
+OPTIM = "" ;
 
 HDRS += src ;
 build_dir = $(TOP)/build ;
