@@ -18,5 +18,8 @@ LinkLibraries simulatortest : libsimulator ;
 
 Main boostserialization : boostserialization.cpp ;
 
-InstallBin $(binary_dir)/test : randomc gsl distributions distgens ;
-InstallBin $(binary_dir) : simulatortest boostserialization ;
+Main eventserialization : eventserialization.cpp ;
+LinkLibraries eventserialization : libsimulator ;
+
+InstallBin $(binary_dir)/test : randomc gsl distributions distgens boostserialization ;
+InstallBin $(binary_dir) : simulatortest eventserialization ;

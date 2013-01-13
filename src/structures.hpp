@@ -23,6 +23,7 @@ struct point {
 	point(double x, double y) {
 		this->x = x; this->y = y;
 	}
+	point() {}
 };
 
 struct detectordata {
