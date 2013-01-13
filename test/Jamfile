@@ -16,6 +16,9 @@ Main gsl : gsl.cpp ;
 Main simpartstest : simpartstest.cpp ;
 LinkLibraries simpartstest : libsimulator ;
 
+Main simulatortest : simulatortest.cpp ;
+LinkLibraries simulatortest : libsimulator ;
+
 Main boostserialization : boostserialization.cpp ;
 
 Main eventserialization : eventserialization.cpp ;
@@ -23,4 +26,4 @@ LinkLibraries eventserialization : libsimulator ;
 
 InstallBin $(binary_dir)/test : randomc gsl distributions distgens ;
 InstallBin $(binary_dir)/test : simpartstest boostserialization ;
-InstallBin $(binary_dir) : eventserialization ;
+InstallBin $(binary_dir) : simulatortest eventserialization ;
