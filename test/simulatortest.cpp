@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <cmath>
 
 #include "particlegens.hpp"
 #include "detectors.hpp"
@@ -21,7 +22,11 @@ int main(int argc, char* argv[]) {
 	detectordata data = d->simulate(p);
 	particleguess guess = r->reco(data);
 	
-	cout << "Particle: " << p.mass << ' ' << p.energy << endl;
+	cout << "Particle: " << endl;
+	cout << "  mass:   " << p.mass << endl;
+	cout << "  energy: " << p.energy << endl;
+	cout << "  angle:  " << p.phi << endl;
+	cout << "  charge: " << p.charge << endl;
 	
 	cout << endl;
 	cout << "Detector data:" << endl;
@@ -44,6 +49,8 @@ int main(int argc, char* argv[]) {
 	cout << "  x = " << guess.cx << endl;
 	cout << "  y = " << guess.cy << endl;
 	cout << "  t = " << guess.cr << endl;
+	cout << " angle guess = " << guess.phi << endl;
+	cout << " angle guess = " << (180/M_PI)*guess.phi << " deg" << endl;
 	
 	return 0;
 }

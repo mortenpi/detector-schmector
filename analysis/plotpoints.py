@@ -15,11 +15,13 @@ y = [d[1] for d in data]
 c = map(float, lines[1].split(','))
 print c
 
+maxy = max(y)
+
 mp.scatter(x,y)
-mp.ylim([-0.5,0.5])
+mp.ylim([-1.1*max(map(abs, y)), 1.1*max(map(abs, y))])
 mp.xlim([0,1.5])
 
-cr1 = mp.Circle((0.624986, -0.625014), 0.883883, color='r', fill=False)
+cr1 = mp.Circle((0.624986, -0.625014), 0.883883, color='r', fill=False, linestyle='dashed')
 #cr2 = mp.Circle((-0.623383, 0.630122), 0.890109, color='b', fill=False)
 cr2 = mp.Circle((c[0], c[1]), c[2], color='b', fill=False)
 mp.gca().add_artist(cr1)

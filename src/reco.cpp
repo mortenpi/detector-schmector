@@ -158,5 +158,7 @@ particleguess SimpleLSFCircleReco::reco(detectordata d) {
 	ret.cy = Xb/2;
 	ret.cr = sqrt(4*Xc + Xa*Xa + Xb*Xb)/2;
 	
+	ret.phi = atan2(ret.cy, ret.cx) + M_PI_2;
+	
 	return ret;
 }
