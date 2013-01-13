@@ -13,13 +13,14 @@ LinkLibraries distgens : libdists librandomc ;
 
 Main gsl : gsl.cpp ;
 
-Main simulatortest : simulatortest.cpp ;
-LinkLibraries simulatortest : libsimulator ;
+Main simpartstest : simpartstest.cpp ;
+LinkLibraries simpartstest : libsimulator ;
 
 Main boostserialization : boostserialization.cpp ;
 
 Main eventserialization : eventserialization.cpp ;
 LinkLibraries eventserialization : libsimulator ;
 
-InstallBin $(binary_dir)/test : randomc gsl distributions distgens boostserialization ;
-InstallBin $(binary_dir) : simulatortest eventserialization ;
+InstallBin $(binary_dir)/test : randomc gsl distributions distgens ;
+InstallBin $(binary_dir)/test : simpartstest boostserialization ;
+InstallBin $(binary_dir) : eventserialization ;
