@@ -18,18 +18,97 @@ deserialize_system(PyObject *self, PyObject *args) {
 	return Py_BuildValue("i", sts);
 }
 
+void printEvent(const Event &e) {
+	std::cout << "Has particle? " << (e.has_p?"Yes!":"No!") << std::endl;
+	if(e.has_p) {
+		std::cout << " > mass   = " << e.p.mass << std::endl;
+		std::cout << " > charge = " << e.p.charge << std::endl;
+		std::cout << " > energy = " << e.p.energy << std::endl;
+		std::cout << " > phi    = " << e.p.phi << std::endl;
+	}
+	
+	std::cout << "Has detector params? " << (e.has_dp?"Yes!":"No!") << std::endl;
+	if(e.has_dp) {
+		//std::cout << " > " << e.p.phi << std::endl;
+	}
+	
+	std::cout << "Has detector data? " << (e.has_d?"Yes!":"No!") << std::endl;
+	if(e.has_d) {
+		std::cout << " > energy = " << e.d.energy << std::endl;
+		std::cout << " > N = " << e.d.points.size() << std::endl;
+		for(int i=0; i<e.d.points.size(); i++) {
+			point ppp = e.d.points[i];
+			std::cout << " > p(" << ppp.x << ", " << ppp.y << ")" << std::endl;
+		}
+	}
+	
+	std::cout << "Has reco? " << (e.has_g?"Yes!":"No!") << std::endl;
+	if(e.has_g) {
+		std::cout << " > " << e.p.phi << std::endl;
+	}
+}
+
 static PyObject *
 deserialize_deserialize(PyObject *self, PyObject *args) {
 	const char * file;
 	if (!PyArg_ParseTuple(args, "s", &file)) return NULL;
 	
 	Event ev;
+	PyObject * ret = PyList_New(0);
+	
 	std::ifstream fin(file);
 	boost::archive::text_iarchive ia(fin);
-	ia >> ev;
+	try {
+		while(true) {
+			ia >> ev;
+			std::cout << "Event read." << std::endl;
+			printEvent(ev);
+			
+			std::cout << ev.p.mass << std::endl;
+			PyObject * p = Py_BuildValue("{s:f,s:f,s:f,s:f}",
+				"mass", ev.p.mass,
+				"charge", ev.p.charge,
+				"energy", ev.p.energy,
+				"phi", ev.p.phi
+			);
+			PyObject * dp = Py_BuildValue("{s:f,s:f,s:f,s:f,s:f}",
+				"B",  ev.dp.B,
+				"N",  ev.dp.N,
+				"x0", ev.dp.x0,
+				"dx", ev.dp.dx,
+				"dy", ev.dp.dy
+			);
+			PyObject * gs = Py_BuildValue("{s:f,s:f,s:f,s:f,s:f}",
+				"cx", ev.g.cx,
+				"cy", ev.g.cy,
+				"cr", ev.g.cr,
+				"phi", ev.g.phi,
+				"energy", ev.g.energy
+			);
+			
+			PyObject * points = PyList_New(0);
+			for(int i=0; i<ev.d.points.size(); i++) {
+				PyList_Append(points, Py_BuildValue("(f,f)", ev.d.points[i].x, ev.d.points[i].y));
+			}
+			PyObject * d = Py_BuildValue("{s:f,s:O}",
+				"energy", ev.d.energy,
+				"points", points
+			);
+			
+			PyObject * event = Py_BuildValue("{s:O, s:O, s:O, s:O}",
+				"particle", ev.has_p  ? p  : Py_None,
+				"d_param",  ev.has_dp ? dp : Py_None,
+				"d_data",   ev.has_d  ? d  : Py_None,
+				"guess",    ev.has_g  ? gs : Py_None
+			);
+			PyList_Append(ret, event);
+		}
+	} catch(boost::archive::archive_exception e) {
+		std::cout << "Out of mana: " << e.what() << std::endl;
+	}
 	fin.close();
 	
-	return Py_BuildValue("f", ev.p.phi);
+	return ret;
 }
 
 struct vec {
