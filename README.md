@@ -1,6 +1,7 @@
 Particle detector simulation
 ============================
 A particle detector simulation software that uses Monte Carlo methods.
+Or atleast one day will.
 
 Compiling
 =========
@@ -15,7 +16,7 @@ License
 =======
 Copyright (C) 2013 Morten Piibeleht
 
-Written for the Comuputational Physics I course  
+Written for the Computational Physics I course  
 University of Tartu
 
 MIT License
