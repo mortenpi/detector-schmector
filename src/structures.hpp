@@ -9,6 +9,7 @@ struct particle {
 
 struct particleguess {
 	double mass, charge, energy, phi;
+	double cr, cx, cy;
 };
 
 struct detectorparams {

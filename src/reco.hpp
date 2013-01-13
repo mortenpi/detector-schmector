@@ -13,3 +13,9 @@ class LSFCircleReco : public Reconstructor {
 	LSFCircleReco(detectorparams param);
 	particleguess reco(detectordata d);
 };
+
+class SimpleLSFCircleReco : public Reconstructor {
+	public:
+	SimpleLSFCircleReco(detectorparams param);
+	particleguess reco(detectordata d);
+};

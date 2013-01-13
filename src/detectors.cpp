@@ -1,4 +1,5 @@
 #include <cmath>
+#include <cstdio>
 
 #include "detectors.hpp"
 
@@ -21,6 +22,7 @@ detectordata IdealDetector::simulate(particle p) {
 	
 	double x0 = r * cos(p.phi - M_PI_2);
 	double y0 = r * sin(p.phi - M_PI_2);
+	printf("xy0: %f %f %f\n", x0, y0, sqrt(x0*x0 + y0*y0));
 	
 	// check max Dx
 	double mDx = (this->params.dx*(this->params.N-1) + this->params.x0 - x0);
@@ -33,7 +35,7 @@ detectordata IdealDetector::simulate(particle p) {
 	for(int i=0; i < this->params.N; i++) {
 		double x = this->params.dx*i + this->params.x0;
 		double Dx = x - x0;
-		double Dy = sqrt(r*r - Dx*Dx);
+		double Dy = y0 + sqrt(r*r - Dx*Dx);
 		
 		ret.points.push_back(point(x, getYEst(Dy, this->params.dy)));
 	}
