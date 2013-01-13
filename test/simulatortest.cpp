@@ -9,7 +9,7 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
 	detectorparams dp;
-	dp.B = 4; dp.dy = 0.01;
+	dp.B = 4; dp.dy = 0.03;
 	dp.x0 = 0.2; dp.dx = 0.05; dp.N = 20;
 	
 	ParticleGenerator * pg = new ConstantParticleGenerator(5,2,5,3.1415/4);
@@ -31,6 +31,7 @@ int main(int argc, char* argv[]) {
 	cout << "  > Writing to `pts.csv`" << endl;
 	ofstream fout("pts.csv");
 	fout << "x, y" << endl;
+	fout << guess.cx << ", " << guess.cy << ", " << guess.cr << endl;
 	for(int i=0; i<data.points.size(); i++) {
 		point pt = data.points[i];
 		//cout << pt.x << ' ' << pt.y << endl;

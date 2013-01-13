@@ -154,8 +154,8 @@ particleguess SimpleLSFCircleReco::reco(detectordata d) {
 	gsl_permutation_free(p);
 	gsl_vector_free(x);
 	
-	ret.cx = (-1)*Xa/2;
-	ret.cy = (-1)*Xb/2;
+	ret.cx = Xa/2;
+	ret.cy = Xb/2;
 	ret.cr = sqrt(4*Xc + Xa*Xa + Xb*Xb)/2;
 	
 	return ret;
