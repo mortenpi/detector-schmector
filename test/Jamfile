@@ -16,5 +16,7 @@ Main gsl : gsl.cpp ;
 Main simulatortest : simulatortest.cpp ;
 LinkLibraries simulatortest : libsimulator ;
 
+Main boostserialization : boostserialization.cpp ;
+
 InstallBin $(binary_dir)/test : randomc gsl distributions distgens ;
-InstallBin $(binary_dir) : simulatortest ;
+InstallBin $(binary_dir) : simulatortest boostserialization ;

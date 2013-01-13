@@ -11,7 +11,7 @@ binary_dir = $(TOP)/bin ;
 
 ALL_LOCATE_TARGET = $(build_dir) ;
 
-LINKLIBS += -lgsl -lgslcblas ;
+LINKLIBS += -lgsl -lgslcblas -lboost_serialization ;
 
 SubInclude TOP src ;
 SubInclude TOP test ;
