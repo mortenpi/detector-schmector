@@ -50,8 +50,10 @@ void printEvent(const Event &e) {
 
 static PyObject *
 deserialize_deserialize(PyObject *self, PyObject *args) {
-	const char * file;
-	if (!PyArg_ParseTuple(args, "s", &file)) return NULL;
+	const char * file; int verbose_int = 0;
+	if (!PyArg_ParseTuple(args, "s|i", &file, &verbose_int)) return NULL;
+	
+	bool verbose = (verbose_int != 0);
 	
 	Event ev;
 	PyObject * ret = PyList_New(0);
@@ -61,10 +63,12 @@ deserialize_deserialize(PyObject *self, PyObject *args) {
 	try {
 		while(true) {
 			ia >> ev;
-			std::cout << "Event read." << std::endl;
-			printEvent(ev);
 			
-			std::cout << ev.p.mass << std::endl;
+			if(verbose) {
+				std::cout << "Event read." << std::endl;
+				printEvent(ev);
+			}
+			
 			PyObject * p = Py_BuildValue("{s:f,s:f,s:f,s:f}",
 				"mass", ev.p.mass,
 				"charge", ev.p.charge,
@@ -104,7 +108,9 @@ deserialize_deserialize(PyObject *self, PyObject *args) {
 			PyList_Append(ret, event);
 		}
 	} catch(boost::archive::archive_exception e) {
-		std::cout << "Out of mana: " << e.what() << std::endl;
+		if(verbose) {
+			std::cout << "Out of mana: " << e.what() << std::endl;
+		}
 	}
 	fin.close();
 	

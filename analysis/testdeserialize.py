@@ -3,4 +3,7 @@ import cbind.deserialize as dsr
 
 print dsr.test('bser.fout')
 
-print dsr.deserialize('events.fout')
+evs = dsr.deserialize('events.fout')
+print 'Events:', len(evs)
+#for e in evs:
+#	print e
