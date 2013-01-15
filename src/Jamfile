@@ -1,7 +1,6 @@
 SubDir TOP src ;
 
-Library libsimulator : particlegens.cpp detectors.cpp reco.cpp simulator.cpp ;
-
+Library libsimulator : particlegens.cpp detectors.cpp reco.cpp simulator.cpp functions.cpp ;
 Library libdists : distributions.cpp distgen.cpp ;
 
 SubInclude TOP src randomc ;
