@@ -1,3 +1,5 @@
+#ifndef _DISTGEN_HPP_
+#define _DISTGEN_HPP_
 //#include "distributions.hpp"
 class Distribution;
 class CRandomMersenne;
@@ -45,3 +47,4 @@ class DeltaDistributionGenerator : public DistributionGenerator {
 	DeltaDistributionGenerator(double x);
 	virtual double rnd();
 };
+#endif

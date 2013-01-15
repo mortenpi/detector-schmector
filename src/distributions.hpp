@@ -1,3 +1,5 @@
+#ifndef _DISTRIBUTIONS_HPP_
+#define _DISTRIBUTIONS_HPP_
 class Distribution {
 	public:
 	Distribution() {}
@@ -25,3 +27,4 @@ class ExponentialDistribution: public Distribution {
 	double cdf(double x);
 	double invcdf(double p);
 };
+#endif
