@@ -1,3 +1,5 @@
+#include <cmath>
+
 #include "randomc/randomc.h"
 #include "distributions.hpp"
 
@@ -21,7 +23,7 @@ double TFMDistributionGenerator::rnd() {
 
 UniformDistributionGenerator::UniformDistributionGenerator(double a, double b, int seed) : DistributionGenerator(seed) {
 	double min = (a<b)?a:b; double max = (a>b)?a:b;
-	this->width = min-min;
+	this->width = max-min;
 	this->shift = min;
 }
 
@@ -35,4 +37,20 @@ DeltaDistributionGenerator::DeltaDistributionGenerator(double x) : DistributionG
 
 double DeltaDistributionGenerator::rnd() {
 	return this->mean;
+}
+
+NormalDistributionGenerator::NormalDistributionGenerator(double mean, double sigma, int seed) : DistributionGenerator(seed) {
+	this->dist = new NormalDistribution(mean, sigma);
+	this->ymax = 1/(sigma*sqrt(2*M_PI));
+	this->xmin = mean - 5*sigma;
+	this->xmax = mean + 5*sigma;
+}
+
+double NormalDistributionGenerator::rnd() {
+	double x,y;
+	do{
+		x = (this->xmax-this->xmin)*this->uniform() + this->xmin;
+		y = this->ymax*this->uniform();
+	} while(y > this->dist->pdf(x));
+	return x;
 }

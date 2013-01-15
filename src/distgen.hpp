@@ -21,6 +21,15 @@ class TFMDistributionGenerator : public DistributionGenerator {
 	virtual double rnd();
 };
 
+class NormalDistributionGenerator : public DistributionGenerator {
+	Distribution * dist;
+	double ymax; double xmin, xmax;
+	
+	public:
+	NormalDistributionGenerator(double mean, double sigma, int seed);
+	virtual double rnd();
+};
+
 class UniformDistributionGenerator : public DistributionGenerator {
 	double width, shift;
 	

@@ -11,6 +11,9 @@ LinkLibraries distributions : libdists ;
 Main distgens : distgens.cpp ;
 LinkLibraries distgens : libdists librandomc ;
 
+Main distributiongenerator : distributiongenerator.cpp ;
+LinkLibraries distributiongenerator : libdists librandomc ;
+
 Main gsl : gsl.cpp ;
 
 Main simpartstest : simpartstest.cpp ;
