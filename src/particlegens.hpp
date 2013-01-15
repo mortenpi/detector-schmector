@@ -1,4 +1,5 @@
 #include "structures.hpp"
+#include "distgen.hpp"
 
 class ParticleGenerator {
 	public:
@@ -10,5 +11,21 @@ class ConstantParticleGenerator : public ParticleGenerator {
 	
 	public:
 	ConstantParticleGenerator(double mass, double charge, double energy, double phi);
+	particle generate();
+};
+
+class DistributedParticleGenerator : public ParticleGenerator {
+	DistributionGenerator * massDistGen;
+	DistributionGenerator * chargeDistGen;
+	DistributionGenerator * energyDistGen;
+	DistributionGenerator * phiDistGen;
+	
+	public:
+	DistributedParticleGenerator(
+		DistributionGenerator * massDistGen,
+		DistributionGenerator * chargeDistGen,
+		DistributionGenerator * energyDistGen,
+		DistributionGenerator * phiDistGen
+	);
 	particle generate();
 };

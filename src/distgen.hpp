@@ -20,3 +20,19 @@ class TFMDistributionGenerator : public DistributionGenerator {
 	TFMDistributionGenerator(Distribution * dist, int seed);
 	virtual double rnd();
 };
+
+class UniformDistributionGenerator : public DistributionGenerator {
+	double width, shift;
+	
+	public:
+	UniformDistributionGenerator(double a, double b, int seed);
+	virtual double rnd();
+};
+
+class DeltaDistributionGenerator : public DistributionGenerator {
+	double mean;
+	
+	public:
+	DeltaDistributionGenerator(double x);
+	virtual double rnd();
+};
