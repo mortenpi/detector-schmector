@@ -3,4 +3,8 @@ SubDir TOP src ;
 Library libsimulator : particlegens.cpp detectors.cpp reco.cpp simulator.cpp functions.cpp ;
 Library libdists : distributions.cpp distgen.cpp ;
 
+Main analyser : analysis.cpp ;
+LinkLibraries analyser : libsimulator libdists librandomc ;
+InstallBin $(TOP)/analysis : analyser ;
+
 SubInclude TOP src randomc ;

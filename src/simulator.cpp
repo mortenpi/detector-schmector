@@ -17,19 +17,27 @@ void Simulator::run(const char * file, int N) {
 	boost::archive::text_oarchive oa(fout);
 	
 	for(int i=0; i<N; i++) {
-		particle p = this->pg->generate();
-		detectordata data = this->det->simulate(p);
-		particleguess guess = this->reco->reco(data);
-		
 		Event ev;
-		ev.has_p = true;
-		ev.p = p;
-		ev.has_d = true;
-		ev.d = data;
+		particleguess guess;
+		
 		ev.has_dp = true;
 		ev.dp = this->dp;
-		ev.has_g = true;
-		ev.g = guess;
+		
+		particle p = this->pg->generate();
+		ev.has_p = true;
+		ev.p = p;
+		
+		detectordata data = this->det->simulate(p);
+		ev.has_d = true;
+		ev.d = data;
+		
+		if(data.points.size() > 0) {
+			guess = this->reco->reco(data);
+			ev.has_g = true;
+			ev.g = guess;
+		} else {
+			ev.has_g = false;
+		}
 		
 		oa << ev;
 	}
