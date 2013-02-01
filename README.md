@@ -3,14 +3,39 @@ Particle detector simulation
 A particle detector simulation software that uses Monte Carlo methods.
 Or atleast one day will.
 
+The code is roughly in two parts:
+
+ *  The actual Monte Carlo and simulation part is written in C++.
+    Couple C++ programs create datasets that can be analyzed.
+ *  There are Python scripts that use Matplotlib and NumPy/SciPy
+    to analyze the produced datasets, create plots etc.
+
 Compiling
 =========
-Project uses the jam build tool. Run `jam` to build everything.
+Project uses the [Perforce Jam](http://www.perforce.com/documentation/jam)
+build tool. Just run `jam` (or `ftjam`, since it's backwards compatible)
+in the top-level directory to build everything.
 
 Dependencies
 ------------
-Project uses the GNU GSL library. It should be linked with
-`-lgsl -lgslcblas` flags. Related example: `test/gls.cpp`.
+C++ part of the project uses:
+
+ *  [GNU GSL library](http://www.gnu.org/software/gsl/).
+    
+    It should be linked with `-lgsl -lgslcblas` flags.
+    A related example: `test/gls.cpp`.
+
+ *  [Boost C++ Libraries](http://www.boost.org/)
+    
+    Currently only the serialization library is used from Boost.
+    Code should be compiled with `-lboost_serialization`.
+    A related example: `test/boostserialization.cpp`
+
+Python part of the project uses the following Python libraries:
+
+ *  [NumPy](http://www.numpy.org/)
+ *  [SciPy](http://www.scipy.org/)
+ *  [Matplotlib](http://matplotlib.org/)
 
 License
 =======
