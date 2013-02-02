@@ -1,11 +1,11 @@
 #ifndef _DISTGEN_HPP_
 #define _DISTGEN_HPP_
+#include <gsl/gsl_rng.h>
 //#include "distributions.hpp"
 class Distribution;
-class CRandomMersenne;
 
 class DistributionGenerator {
-	CRandomMersenne * gen;
+	gsl_rng * rng;
 	
 	protected:
 	double uniform();

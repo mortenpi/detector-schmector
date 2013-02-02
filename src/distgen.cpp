@@ -1,16 +1,13 @@
 #include <cmath>
-
-#include "randomc/randomc.h"
 #include "distributions.hpp"
-
 #include "distgen.hpp"
 
 DistributionGenerator::DistributionGenerator(int seed) {
-	this->gen = new CRandomMersenne(seed);
+	this->rng = gsl_rng_alloc(gsl_rng_mt19937);
 }
 
 double DistributionGenerator::uniform() {
-	return this->gen->Random();
+	return gsl_rng_uniform_pos(this->rng);
 }
 
 TFMDistributionGenerator::TFMDistributionGenerator(Distribution * dist, int seed) : DistributionGenerator(seed) {

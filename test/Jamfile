@@ -2,17 +2,14 @@ SubDir TOP test ;
 
 LOCATE_TARGET = $(build_dir)/test ;
 
-Main randomc : randomc.cpp ;
-LinkLibraries randomc : librandomc ;
-
 Main distributions : distributions.cpp ;
 LinkLibraries distributions : libdists ;
 
 Main distgens : distgens.cpp ;
-LinkLibraries distgens : libdists librandomc ;
+LinkLibraries distgens : libdists ;
 
 Main distributiongenerator : distributiongenerator.cpp ;
-LinkLibraries distributiongenerator : libdists librandomc ;
+LinkLibraries distributiongenerator : libdists ;
 
 Main gsl : gsl.cpp ;
 
@@ -27,6 +24,6 @@ Main boostserialization : boostserialization.cpp ;
 Main eventserialization : eventserialization.cpp ;
 LinkLibraries eventserialization : libsimulator ;
 
-InstallBin $(binary_dir)/test : randomc gsl distributions distgens ;
+InstallBin $(binary_dir)/test : gsl distributions distgens ;
 InstallBin $(binary_dir)/test : simpartstest boostserialization ;
 InstallBin $(binary_dir) : simulatortest eventserialization ;

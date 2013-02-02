@@ -4,7 +4,5 @@ Library libsimulator : particlegens.cpp detectors.cpp reco.cpp simulator.cpp fun
 Library libdists : distributions.cpp distgen.cpp ;
 
 Main analyser : analysis.cpp ;
-LinkLibraries analyser : libsimulator libdists librandomc ;
+LinkLibraries analyser : libsimulator libdists ;
 InstallBin $(TOP)/analysis : analyser ;
-
-SubInclude TOP src randomc ;
