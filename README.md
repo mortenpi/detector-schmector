@@ -1,5 +1,5 @@
-Particle detector simulation
-============================
+Deschmector
+===========
 A particle detector simulation software that uses Monte Carlo methods.
 Or atleast one day will.
 
@@ -15,6 +15,9 @@ Compiling
 Project uses the [Perforce Jam](http://www.perforce.com/documentation/jam)
 build tool. Just run `jam` (or `ftjam`, since it's backwards compatible)
 in the top-level directory to build everything.
+
+[Doxygen](http://www.stack.nl/~dimitri/doxygen/) can be used to generate
+HTML and Latex documentation (to the `doc/` directory).
 
 Dependencies
 ------------
