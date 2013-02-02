@@ -1,5 +1,7 @@
 #include <cmath>
+#include <gsl/gsl_rng.h>
 #include "distributions.hpp"
+
 #include "distgen.hpp"
 
 DistributionGenerator::DistributionGenerator(int seed) {
