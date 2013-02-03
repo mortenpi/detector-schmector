@@ -26,7 +26,7 @@ class DistributionGenerator {
 	double uniform();
 	
 	public:
-	DistributionGenerator(int seed);
+	DistributionGenerator(int seed=0);
 	/**
 	 * Create a random double that adheres to a distribution.
 	 */
@@ -42,7 +42,7 @@ class TFMDistributionGenerator : public DistributionGenerator {
 	Distribution * dist;
 	
 	public:
-	TFMDistributionGenerator(Distribution * dist, int seed);
+	TFMDistributionGenerator(Distribution * dist, int seed=0);
 	virtual double rnd();
 };
 
@@ -50,14 +50,14 @@ class TFMDistributionGenerator : public DistributionGenerator {
  * @brief Normal distribution generator
  * Internally the acceptance-rejection method is used to create random
  * numbers that adhere to the normal distribution. Only numbers up to
- * five sigma from the mean are generated.
+ * k (default 5) sigma from the mean are generated.
  */
 class NormalDistributionGenerator : public DistributionGenerator {
 	Distribution * dist;
 	double ymax; double xmin, xmax;
 	
 	public:
-	NormalDistributionGenerator(double mean, double sigma, int seed);
+	NormalDistributionGenerator(double mean, double sigma, double k=5, int seed=0);
 	virtual double rnd();
 };
 
@@ -68,8 +68,12 @@ class UniformDistributionGenerator : public DistributionGenerator {
 	double width, shift;
 	
 	public:
-	UniformDistributionGenerator(double a, double b, int seed);
+	UniformDistributionGenerator(double a, double b, int seed=0);
 	virtual double rnd();
+	/**
+	 * Return a uniformly distributed random number in (a,b).
+	 */
+	double rnd_c(double a, double b);
 };
 
 /**
