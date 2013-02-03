@@ -62,3 +62,45 @@ double NormalDistributionGenerator::rnd() {
 	} while(y > this->dist->pdf(x));
 	return x;
 }
+
+/** NormalGARGenerator **/
+NormalGARGenerator::NormalGARGenerator(double mean, double sigma, double k, int seed) : DistributionGenerator(seed) {
+	this->dist = new NormalDistribution(0, sigma);
+	
+	this->mean = mean;
+	this->sigma = sigma;
+	this->x0 = k*sigma;
+	this->ymax = 1/(sigma*sqrt(2*M_PI));
+	this->lambda = k/(2*sigma);
+	this->k = k;
+	
+	this->pdf_norm = sqrt(2.0/M_PI)*( (2/k)*exp(-0.5*k*k) + k );
+	this->cdf_x0 = (1/this->pdf_norm)*(1/k)*sqrt(2.0/M_PI)*exp(-0.5*k*k);
+}
+
+double NormalGARGenerator::rnd() {
+	double x,y;
+	do{
+		x = this->g_invcdf( this->uniform() );
+		y = this->g(x)*this->uniform();
+	} while(y > this->dist->pdf(x));
+	return x + this->mean;
+}
+
+double NormalGARGenerator::g(double x) {
+	if(fabs(x) > this->x0) {
+		return this->ymax*exp( (-1)*this->lambda*fabs(x) );
+	} else {
+		return this->ymax;
+	}
+}
+
+double NormalGARGenerator::g_invcdf(double px) {
+	if(px < this->cdf_x0) {
+		return log( sqrt(M_PI/2)*k*this->pdf_norm*px )/this->lambda;
+	} else if(px > (1-this->cdf_x0)) {
+		return (-1)*log( sqrt(M_PI/2)*k*this->pdf_norm*(1-px) )/this->lambda;
+	} else {
+		return this->sigma*sqrt(2*M_PI)*( this->pdf_norm*(px-this->cdf_x0) - k/sqrt(2*M_PI) );
+	}
+}

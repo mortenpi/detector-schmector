@@ -62,6 +62,24 @@ class NormalDistributionGenerator : public DistributionGenerator {
 };
 
 /**
+ * @brief Normal distribution generator
+ * Internally it uses the generalized acceptance-rejection method.
+ */
+class NormalGARGenerator : public DistributionGenerator {
+	Distribution * dist;
+	double mean, sigma;
+	double ymax, lambda, x0;
+	double cdf_x0, pdf_norm, k;
+	
+	public:
+	NormalGARGenerator(double mean, double sigma, double k=2, int seed=0);
+	virtual double rnd();
+	
+	double g(double x);
+	double g_invcdf(double px);
+};
+
+/**
  * @brief Uniformly distributed random numbers.
  */
 class UniformDistributionGenerator : public DistributionGenerator {
