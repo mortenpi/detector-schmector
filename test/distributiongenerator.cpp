@@ -22,13 +22,13 @@ int main(int argc, char* argv[]) {
 	// Exponential
 	cout << "Exponential distribution..." << endl;
 	double lambda = 0.7;
-	dg = new TFMDistributionGenerator(new ExponentialDistribution(lambda), 123456);
+	dg = new TFMDistributionGenerator(new ExponentialDistribution(lambda));
 	genAndSave(dg, "exp.fout", N);
 	
 	// Normal
 	cout << "Normal distribution..." << endl;
 	double mean = 1.5; double sigma = 2.0;
-	dg = new NormalDistributionGenerator(mean, sigma, 123456);
+	dg = new NormalDistributionGenerator(mean, sigma);
 	genAndSave(dg, "normal.fout", N);
 	
 	// Normal with GAR
